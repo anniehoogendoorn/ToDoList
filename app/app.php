@@ -6,7 +6,7 @@
 
   $app->get("/", function(){
       $test_task = new Task("Learn PHP.");
-      $another_test_task = new Task("Learn Drupal".);
+      $another_test_task = new Task("Learn Drupal.");
       $third_task = new Task("Visit France.");
 
       $list_of_tasks = array($test_task, $another_test_task, $third_task);
