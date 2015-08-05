@@ -10,12 +10,12 @@ class Task
 
     function setDescription ($new_description)
     {
-      $this->description = (string) $new_description;
+        $this->description = (string) $new_description;
     }
 
     function getDescription()
     {
-      return $this->description;
+        return $this->description;
     }
 
     function save()

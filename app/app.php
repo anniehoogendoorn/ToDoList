@@ -14,7 +14,7 @@
 
     $app->get("/", function() use ($app){
 
-        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
+        return $app['twig']->render('tasks.html.twig', array('tasks' =>    Task::getAll()));
 
   });
 
