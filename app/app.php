@@ -25,12 +25,9 @@
 
     });
 
-    $app->post("/delete_tasks", function(){
+    $app->post("/delete_tasks", function() use ($app){
         Task::deleteAll();
-        return "
-        <h1>List Cleared!</h1>
-        <p><a href='/'>Home</a></p>
-        ";
+        return $app['twig']->render('delete_tasks.html.twig');
     });
 
 return $app;
