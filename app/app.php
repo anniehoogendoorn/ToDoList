@@ -8,9 +8,11 @@
     }
 
     $app = new Silex\Application();
+    $app->register(new Silex\Provider\TwigServiceProvider(), array(
+        'twig.path' => __DIR__.'/../views'
+    ));
 
-
-    $app->get("/", function(){
+    $app->get("/", function() use ($app){
         $output = "";
 
         $all_tasks = Task::getAll();
@@ -40,7 +42,7 @@
             </form>
             ";
 
-        return $output;
+        return $app['twig']->render('tasks/twig');
   });
 
     $app->post("/tasks", function(){
