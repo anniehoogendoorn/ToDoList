@@ -2,19 +2,21 @@
     require_once __DIR__."/../vendor/autoload.php";
     require_once __DIR__."/../src/task.php";
 
-    session_start();
-    if (empty($_SESSION['list_of_tasks'])) {
-        $_SESSION['list_of_tasks'] = array();
-    }
-
     $app = new Silex\Application();
+
+    $server = 'mysql:host=localhost;dbname=todo';
+    $username = 'root';
+    $password = 'root';
+    //setting up connection to our database
+    $DB = new PDO($server, $username, $password);
+
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__.'/../views'
     ));
 
     $app->get("/", function() use ($app){
 
-        return $app['twig']->render('tasks.html.twig', array('tasks' =>    Task::getAll()));
+        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
 
   });
 
