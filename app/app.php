@@ -22,10 +22,6 @@
         return $app['twig']->render('index.html.twig', array('categories' => Category::getAll()));
     });
 
-    /*//This takes the user to /tasks page, which has a form to add a new task, and  returns the array 'tasks' with existing tasks.
-    $app->get("/tasks", function() use ($app) {
-        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
-    });*/
 
     //When the user submits a task description:
     $app->post("/tasks", function() use ($app){
@@ -52,6 +48,7 @@
 
     $app->get("/categories/{id}", function($id) use ($app) {
         $category = Category::find($id);
+        //This takes the user to /categories/* page, which has a form to add a new task, and  returns the array 'tasks' with existing tasks.
          return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks'=> $category->getTasks()));
     });
 
