@@ -14,6 +14,10 @@
             <button type="submit">Add category</button>
         </form>
 
+        <form action='/delete_categories' method='post'>
+            <button type='submit'>Clear</button>
+        </form>
+
         {% if categories is not empty %}
             <p>Here are all of your categories:</p>
             <ul>
