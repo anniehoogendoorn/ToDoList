@@ -6,7 +6,7 @@
     */
 
     require_once "src/Task.php";
-    require_once "src/Category,php";
+    require_once "src/Category.php";
 
     $server = 'mysql:host=localhost;dbname=to_do_test';
     $username = 'root';
@@ -79,7 +79,7 @@
 
             $description = "Wash the dog";
             $category_id = $test_category->getId();
-            $test_task = new Task($description);
+            $test_task = new Task($description, $id, $category_id);
 
             //Act
             $test_task->save();
@@ -148,7 +148,7 @@
             $test_category->save();
 
             $description = "Wash the dog";
-            $category_id = $testcategory->getId();
+            $category_id = $test_category->getId();
             $test_task = new Task($description, $id, $category_id);
             $test_task->save();
 
