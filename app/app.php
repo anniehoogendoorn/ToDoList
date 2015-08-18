@@ -33,8 +33,10 @@
         $description = $_POST['description'];
         //Attaches the category id
         $category_id = $_POST['category_id'];
+        //Attaches the due date
+        $due_date = $_POST['due_date'];
         //Creates a new Task object with the above mentioned description, and category_id. Sets the task id to null because it is assigned by the database
-        $task = new Task($_POST['description'], $id = null, $category_id);
+        $task = new Task($_POST['description'], $id = null, $category_id, $due_date);
         //Saves new task to database and assigns a task id - see Task.php
         $task->save();
         //Defines the category variable by finding the category by using its id
