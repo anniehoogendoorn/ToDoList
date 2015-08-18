@@ -34,7 +34,7 @@
         }
 
         function save()
-        //connects us to the database and saves description into the table 'tasks'
+        //connects us to the database and saves description and categoryID into the table 'tasks'
         {
             $GLOBALS['DB']->exec("INSERT INTO tasks (description, category_id) VALUES ('{$this->getDescription()}', {$this->getCategoryId()})");
             $this->id = $GLOBALS['DB']->lastInsertId();

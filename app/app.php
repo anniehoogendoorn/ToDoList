@@ -17,22 +17,29 @@
         'twig.path' => __DIR__.'/../views'
     ));
 
+    //This takes the user to "/" page, in which we render our index.html.twig page. It also pushes our categories to be listed.
     $app->get("/", function() use ($app){
-
         return $app['twig']->render('index.html.twig', array('categories' => Category::getAll()));
-
     });
 
+    //This takes the user to /tasks page, which has a form to add a new task, and  returns the array 'tasks' with existing tasks.
     $app->get("/tasks", function() use ($app) {
         return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
     });
 
+    //When the user submits a task description:
     $app->post("/tasks", function() use ($app){
+        //It saves the entered description
         $description = $_POST['description'];
+        //Attaches the category id
         $category_id = $_POST['category_id'];
+        //Creates a new Task object with the above mentioned description, and category_id. Sets the task id to null because it is assigned by the database
         $task = new Task($_POST['description'], $id = null, $category_id);
+        //Saves new task to database and assigns a task id - see Task.php
         $task->save();
+        //Defines the category variable by finding the category by using its id
         $category = Category::find($category_id);
+        //Displays the category page with the list of existing tasks
         return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks()));
     });
 
