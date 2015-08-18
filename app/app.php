@@ -6,6 +6,7 @@
     $app = new Silex\Application();
     $app["debug"] = true;
 
+    //Make sure you have the database below exists in sql, if not, create one.
     $server = 'mysql:host=localhost;dbname=to_do';
     $username = 'root';
     $password = 'root';
