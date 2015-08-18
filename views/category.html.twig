@@ -1,36 +1,42 @@
 <html>
     <head>
         <title>To Do List</title>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
     </head>
     <body>
-        <h1>{{ category.getName }}</h1>
+        <div class='container'>
+            <h1>{{ category.getName }}</h1>
 
-        {% if tasks is not empty %}
-            <p> Here are the tasks:</p>
-            <ul>
-                {% for task in tasks %}
-                    <li>{{ task.getDescription }} {{ task.getDueDate }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+            {% if tasks is not empty %}
+                <p> Here are the tasks:</p>
+                <ul>
+                    {% for task in tasks %}
+                        <li>{{ task.getDescription }} {{ task.getDueDate }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
 
-        <h4>Add a task</h4>
+            <h4>Add a task</h4>
 
-        <form action='/tasks' method='post'>
-            <input id='category_id' name='category_id' type='hidden' value='{{ category.getId }}'>
-            <label for='description'>Task Description</label>
-            <input id='description' name='description' type='text'>
+            <form action='/tasks' method='post' class="form-inline">
+                <div class='form-group'>
 
-            <label for='due_date'>Due Date : </label>
-            <input id='due_date' name='due_date' type='date'/>
+                    <input id='category_id' name='category_id' type='hidden' value='{{ category.getId }}'>
+                    <label for='description'>Task Description</label>
+                    <input id='description' name='description' class='form-control' type='text'>
+                </div>
 
-            <button type='submit'>Add task</button>
-        </form>
+                    <label for='due_date'>Due Date : </label>
+                    <input id='due_date' name='due_date' type='date'/>
 
-        <form action='/delete_tasks' method='post'>
-            <button type='submit'>Clear</button>
-        </form>
+                <button type='submit' class='btn btn-info'>Add task</button>
+            </form>
 
-        <p><a href='/'>Home</a></p>
+            <form action='/delete_tasks' method='post'>
+                <button type='submit' class='btn btn-danger'>Clear list</button>
+            </form>
+
+            <p><a href='/'>Home</a></p>
+        </div>
     </body>
 </html>
