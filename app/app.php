@@ -17,10 +17,8 @@
     ));
 
     $app->get("/", function() use ($app){
-        $person = "will ferrel";
-        $person2 = 'linda';
 
-        return $app['twig']->render('index.html.twig', array('best_friend' => $person, 'mom' => $person2));
+        return $app['twig']->render('index.html.twig');
 
     });
 
