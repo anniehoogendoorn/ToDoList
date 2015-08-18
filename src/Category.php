@@ -52,7 +52,7 @@
         function getTasks()
         {
             $tasks = Array();
-            $returned_tasks = $GLOBALS['DB']->query("SELECT * FROM tasks WHERE category_id = {$this->getId()};");
+            $returned_tasks = $GLOBALS['DB']->query("SELECT * FROM tasks WHERE category_id = {$this->getId()} ORDER BY due_date;");
             foreach($returned_tasks as $task) {
                 $description = $task['description'];
                 $id = $task['id'];
