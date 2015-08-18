@@ -6,7 +6,7 @@
     $app = new Silex\Application();
     $app["debug"] = true;
 
-    $server = 'mysql:host=localhost;dbname=todo';
+    $server = 'mysql:host=localhost;dbname=to_do';
     $username = 'root';
     $password = 'root';
     //setting up connection to our database
@@ -31,6 +31,11 @@
         return $app['twig']->render('tasks.html.twig', array('newtask' => $task, 'tasks' => Task::getAll()));
     });
 
+    $app->post("/delete_tasks", function() use ($app){
+        Task::deleteAll();
+        return $app['twig']->render('index.html.twig');
+    });
+
     $app->get("/categories", function() use ($app) {
          return $app['twig']->render('categories.html.twig', array('categories' => Category::getAll()));
     });
@@ -41,11 +46,12 @@
          return $app['twig']->render('categories.html.twig', array('categories' => Category::getAll()));
     });
 
-
-    $app->post("/delete_tasks", function() use ($app){
+    $app->post("/delete_categories", function() use ($app) {
         Category::deleteAll();
         return $app['twig']->render('index.html.twig');
     });
+
+
 
 return $app;
 
